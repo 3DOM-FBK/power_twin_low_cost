@@ -509,7 +509,7 @@ const V = {
   async load(s){
     const tok_ = this.req = s.id; $("#loading").hidden = false;
     let buf = this.cache.get(s.id);
-    try { if (!buf) { const res = await fetch(`data/pts/${s.id}.bin`); if (!res.ok) throw new Error(res.status); buf = await res.arrayBuffer(); this.cache.set(s.id, buf); if (this.cache.size > 8) this.cache.delete(this.cache.keys().next().value); } }
+    try { if (!buf) { const [pb, po, pl] = s.pk, url = `data/pts/pack_${pb}.bin`; this.packs = this.packs || new Map(); const whole = this.packs.get(pb); if (whole) buf = whole.slice(po, po + pl); else { const res = await fetch(url, { headers: { Range: `bytes=${po}-${po + pl - 1}` } }); if (!res.ok) throw new Error(res.status); const ab = await res.arrayBuffer(); if (res.status === 206 && ab.byteLength === pl) buf = ab; else { this.packs.set(pb, ab); if (this.packs.size > 2) this.packs.delete(this.packs.keys().next().value); buf = ab.slice(po, po + pl); } } this.cache.set(s.id, buf); if (this.cache.size > 8) this.cache.delete(this.cache.keys().next().value); } }
     catch (e) { $("#loading").textContent = `Could not load the points for ${s.id}.`; return; }
     if (this.req !== tok_) return;
     this.build(s, buf); $("#loading").hidden = true; $("#loading").textContent = "Loading scan…";

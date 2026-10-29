@@ -7,7 +7,7 @@ and drag the embed box to about 1600 px tall.
 
   GitHub Pages:  new public repository -> upload the CONTENTS of this folder (index.html at the top level)
                  -> Settings > Pages > Deploy from branch "main", folder "/ (root)".
-                 Web upload takes 100 files at a time, so use GitHub Desktop or:
+                 Web upload works: drag index.html, .nojekyll and the whole data folder onto 'Add file > Upload files' (17 files, each under 25 MB). Or with git:
                    git init; git add .; git commit -m site; git branch -M main
                    git remote add origin https://github.com/<you>/<repo>.git; git push -u origin main
                  URL: https://<you>.github.io/<repo>/
