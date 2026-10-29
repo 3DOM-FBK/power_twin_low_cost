@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="color-scheme" content="light"><title>ScanNet Scan-to-BEM Results</title>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="color-scheme" content="light"><title>Power Twin · LC3D 2026</title><meta name="description" content="Towards Building Energy Digital Twins with a Low-Cost Portable Mobile Mapping System (Roman, Trybała, Farella, Remondino, LC3D 2026): the paper, section by section, and interactive results for all 312 ScanNet scans.">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -92,7 +92,9 @@ select{padding:6px 8px;border:1px solid var(--line);border-radius:6px;background
 .views{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;touch-action:none}
 .views canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0}
 .pv{position:relative;aspect-ratio:1.23;z-index:1;min-width:0;background:transparent;outline:1px solid var(--line);outline-offset:0}
-.pv.graph{background:var(--panel)}
+.glegend{position:absolute;left:10px;right:10px;bottom:8px;display:flex;flex-wrap:wrap;gap:2px 8px;font-size:10.5px;color:var(--muted);pointer-events:none}
+.glegend span{display:inline-flex;align-items:center;gap:4px}
+.glegend i{width:8px;height:8px;border-radius:50%;display:inline-block}
 .pv .lab{position:absolute;left:10px;top:8px;right:40px;pointer-events:none;display:flex;flex-direction:column;line-height:1.15}
 .pv .lab b{font-family:var(--f-display);font-stretch:85%;font-size:14.5px;font-weight:700}
 .pv .lab span{font-size:11.5px;color:var(--muted)}
@@ -151,15 +153,230 @@ td.ok{color:var(--good)} td.fail{color:var(--bad);font-weight:600}
   .views{grid-template-columns:repeat(2,minmax(0,1fr));touch-action:pan-y}.figs{grid-template-columns:repeat(3,minmax(0,1fr))}.about{grid-template-columns:1fr}}
 @media (max-width:520px){.dists{grid-template-columns:1fr}.figs{grid-template-columns:repeat(2,minmax(0,1fr))}.fig:last-child{grid-column:1/-1}.metrics{grid-template-columns:1fr}.views{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ---------- paper project page ---------- */
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.wrap{max-width:1180px;gap:0}
+.p-nav{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.p-nav .in{display:flex;gap:4px 22px;align-items:center;flex-wrap:wrap;padding:12px 0}
+.p-nav b{font-family:var(--f-display);font-stretch:85%;font-size:15px;margin-right:auto}
+.p-nav a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:600}
+.p-nav a:hover{color:var(--accent)}
+.p-hero{display:flex;flex-direction:column;gap:16px;padding:48px 0 40px}
+.p-venue{display:flex;flex-wrap:wrap;gap:8px}
+.p-venue span{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:4px;background:var(--accent-soft);color:var(--accent);font-weight:500}
+.p-venue span.alt{background:var(--line2);color:var(--muted)}
+.p-title{font-size:clamp(32px,4.6vw,54px);font-weight:800;line-height:1.04;letter-spacing:-.015em;max-width:22ch;font-stretch:80%;margin-top:4px}
+.p-title em{font-style:normal;color:var(--accent)}
+.p-authors{font-size:18px;display:flex;flex-wrap:wrap;gap:4px 24px;margin-top:4px}
+.p-authors span{font-weight:600}
+.p-aff{color:var(--muted);font-size:14.5px}
+.p-btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.p-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:var(--ink);color:var(--bg);text-decoration:none;font-weight:600;font-size:14px;border:1px solid var(--ink)}
+.p-btn.o{background:transparent;color:var(--ink);border-color:var(--line)}
+.p-btn:hover{opacity:.88}
+.p-btn svg{width:16px;height:16px}
+.p-sec{display:flex;flex-direction:column;gap:28px;padding:56px 0;border-top:1px solid var(--line);scroll-margin-top:56px}
+.p-shead{display:flex;flex-direction:column;gap:10px;max-width:760px}
+.p-shead h2{font-size:clamp(26px,2.8vw,34px);font-weight:750;font-stretch:85%;line-height:1.1}
+.p-shead p{margin:0;color:var(--muted);font-size:16.5px;line-height:1.55}
+.p-sub{display:flex;flex-direction:column;gap:14px}
+.p-sub>h3{font-size:19px;font-weight:700;font-stretch:90%;display:flex;gap:10px;align-items:baseline}
+.p-sub>h3 i{font-style:normal;font-family:var(--f-mono);font-size:12px;color:var(--accent);letter-spacing:.06em}
+.p-sub>p{margin:0;color:var(--muted);max-width:75ch;line-height:1.55}
+.p-fig{margin:0;display:flex;flex-direction:column;gap:10px;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px}
+.p-fig img{width:100%;height:auto;display:block;border-radius:4px;cursor:zoom-in;background:#fff}
+.p-fig figcaption{font-size:13.5px;color:var(--muted);line-height:1.45}
+.p-fig figcaption b{color:var(--ink);font-weight:600}
+.p-fig.narrow{max-width:820px;width:100%;margin-inline:auto}
+.p-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}
+.p-two.wide-l{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}
+.p-text{display:flex;flex-direction:column;gap:12px;font-size:15.5px;line-height:1.6;min-width:0}
+.p-text p{margin:0}
+.p-abs{font-size:17px;line-height:1.7;max-width:78ch;margin:0}
+.p-kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.p-kpi{background:var(--surface);padding:18px 18px 16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.p-kpi b{font-family:var(--f-display);font-stretch:78%;font-size:34px;font-weight:750;line-height:1;font-variant-numeric:tabular-nums;color:var(--accent)}
+.p-kpi b small{font-size:18px}
+.p-kpi span{font-size:13px;color:var(--muted);line-height:1.35}
+.p-steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px;counter-reset:st}
+.p-steps li{display:grid;grid-template-columns:32px 1fr;gap:12px;counter-increment:st;font-size:14.5px;line-height:1.5}
+.p-steps li::before{content:counter(st,lower-roman);font-family:var(--f-mono);font-size:12px;color:var(--accent);border:1px solid var(--accent);border-radius:50%;width:28px;height:28px;display:grid;place-items:center}
+.p-steps b{display:block;font-size:15px}
+.p-steps span{color:var(--muted)}
+.p-tblbox{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.p-tbl{border-collapse:collapse;width:100%;font-size:14px}
+.p-tbl th,.p-tbl td{padding:8px 12px;border-bottom:1px solid var(--line2);text-align:left;vertical-align:top;white-space:normal}
+.p-tbl tr:last-child td{border-bottom:0}
+.p-tbl th{font-size:12px;color:var(--muted);font-weight:600;position:static;box-shadow:none;cursor:default;background:none;text-transform:uppercase;letter-spacing:.05em;font-family:var(--f-body)}
+.p-tbl td:first-child{font-weight:600;font-family:var(--f-body)}
+.p-tbl em{color:var(--muted)}
+.p-callout{border-left:3px solid var(--accent);padding:2px 0 2px 14px}
+.p-chips{display:flex;flex-wrap:wrap;gap:8px}
+.p-chips span{border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:13.5px;background:var(--surface)}
+.p-chips span b{font-variant-numeric:tabular-nums}
+.p-bib{position:relative;background:#F6F8FA;border:1px solid var(--line);border-radius:10px;padding:18px 20px;overflow-x:auto}
+.p-bib pre{margin:0;font-family:var(--f-mono);font-size:13px;line-height:1.6;white-space:pre}
+.p-copy{position:absolute;top:12px;right:12px}
+.p-refs{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:14.5px;line-height:1.5}
+.p-refs a{color:var(--accent)}
+.p-ack{font-size:14px;color:var(--muted);max-width:90ch;margin:0}
+.p-foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);padding:20px 0 8px}
+.p-foot a{color:var(--accent)}
+.lb{position:fixed;inset:0;z-index:50;background:rgba(14,19,24,.88);display:grid;place-items:center;padding:24px;cursor:zoom-out}
+.lb img{max-width:100%;max-height:100%;background:#fff;border-radius:6px}
+/* explorer header, tidied */
+.explorer-sec .head{grid-template-columns:1fr;gap:18px;align-items:start}
+.explorer-sec .figs{grid-template-columns:repeat(5,minmax(0,1fr))}
+.explorer-sec .dists{margin-top:14px}
+.explorer-sec .about{border-top:0;padding-top:4px;font-size:13px}
+.explorer-sec .about h3{font-size:14px}
+.side{top:64px;max-height:calc(100vh - 76px)}
+@media (max-width:1000px){.p-kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.p-two,.p-two.wide-l{grid-template-columns:1fr}.explorer-sec .figs{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:640px){.p-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.p-kpi:last-child{grid-column:1/-1}.p-nav a.hide-s{display:none}.explorer-sec .figs{grid-template-columns:repeat(2,minmax(0,1fr))}.p-sec{padding:40px 0}}
+
+.p-sec{gap:32px}
+.p-sub>h3 i{min-width:28px}
+.p-list{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;line-height:1.55}
+.p-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 28px}
+.p-card{border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:14px 16px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.5}
+.p-card b{font-size:15px}
+.p-card span{color:var(--muted)}
+.p-cols3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.p-eq{font-family:var(--f-mono);font-size:14px;background:var(--line2);border-radius:6px;padding:10px 14px;align-self:flex-start}
+@media (max-width:1000px){.p-cols{grid-template-columns:1fr}}
+
 </style></head><body>
 
 <div class="wrap">
+<nav class="p-nav" aria-label="Sections"><div class="in">
+  <b>Power Twin · LC3D 2026</b>
+  <a href="#abstract">Abstract</a><a href="#introduction" class="hide-s">1 Introduction</a><a href="#methodology">3 Methodology</a><a href="#results">4 Results</a><a href="#case-study" class="hide-s">5 Case study</a><a href="#conclusions" class="hide-s">6 Conclusions</a><a href="#explorer">All 312 scans</a><a href="#cite">Cite</a>
+</div></nav>
+<header class="p-hero">
+  <div class="p-venue"><span>ISPRS · LC3D 2026</span><span class="alt">Power Twin project</span></div>
+  <h1 class="p-title">Towards Building Energy Digital Twins with a <em>Low-Cost Portable Mobile Mapping System</em></h1>
+  <div class="p-authors"><span>Oscar Roman</span><span>Paweł Trybała</span><span>Elisa Mariarosaria Farella</span><span>Fabio Remondino</span></div>
+  <div class="p-aff">3D Optical Metrology (3DOM) unit, Bruno Kessler Foundation (FBK), Trento, Italy</div>
+  <div class="p-btns">
+    <a class="p-btn" href="#explorer"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 3v10M4 9l4 4 4-4"/></svg>Interactive results: 312 scans</a>
+    <a class="p-btn o" href="https://powertwin.fbk.eu/" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12L12 4M6 4h6v6"/></svg>Power Twin project</a>
+    <a class="p-btn o" href="https://3dom.fbk.eu" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12L12 4M6 4h6v6"/></svg>3DOM – FBK</a>
+    <a class="p-btn o" href="#cite"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 3v10M4 9l4 4 4-4"/></svg>BibTeX</a>
+  </div>
+</header>
+<section class="p-sec" id="abstract">
+  <div class="p-shead"><div class="eyebrow">Abstract</div><h2>From a low-cost walk-through to a simulation-ready building model</h2></div>
+  <p class="p-abs">Building Energy Digital Twins need structured, simulation-ready representations that integrate geometry, topology, semantics, thermal properties and energy-related systems. For existing buildings these are still produced largely by hand, especially the identification, 3D localization and parameterization of energy-relevant devices. We present a <b>mapping-to-BIM/BEM workflow</b> that generates simulation-ready Building Energy Models directly from <b>low-cost mobile mapping data</b>. Structural geometry and spatial organization are reconstructed from 3D point clouds, while energy-related devices are detected in registered multi-view imagery and consolidated into unique 3D instances through cross-view semantic and geometric consistency. Technical information on device nameplates is read with OCR and attached to the corresponding physical instance. Spaces, devices and attributes are integrated into a <b>typed semantic graph</b>, which is translated into <b>EnergyPlus epJSON</b> and a <b>BIM</b> environment.</p>
+  <div class="p-kpis">
+    <div class="p-kpi"><b>311<small>/312</small></b><span>ScanNet scans give a valid EnergyPlus model</span></div>
+    <div class="p-kpi"><b>87–94<small>%</small></b><span>IoU for floor, ceiling and wall</span></div>
+    <div class="p-kpi"><b>54.0<small>%</small></b><span>instance-level F1 for energy devices (best method)</span></div>
+    <div class="p-kpi"><b>92<small>%</small></b><span>nameplate parameters read correctly by OCR</span></div>
+    <div class="p-kpi"><b>~6<small> min</small></b><span>recognition and fusion per scene on a laptop GPU</span></div>
+  </div>
+</section>
+<section class="p-sec" id="introduction">
+  <div class="p-shead"><div class="eyebrow">1 · Introduction</div><h2>Why automate the path from survey to energy model</h2><p>Europe’s building stock is ageing and inefficient, and scaling retrofit needs reliable digitalization. Today, energy-relevant components are still surveyed by experts on site and modelled by hand.</p></div>
+  <div class="p-two">
+    <div class="p-text">
+      <p>Building Energy Models (BEMs) are the simulation-active layer of Energy Digital Twins: watertight B-Rep geometry enriched with semantics, topology, materials, systems and operational data. Creating them remains poorly automated, especially locating and characterising energy-related devices.</p>
+      <p>Low-cost indoor mobile mapping gives spatially referenced images, camera poses and point clouds; visual AI can identify, localize and structure what they contain. This work builds on our Scan-to-EDT workflow and turns raw data from the STELVIO system into simulation-ready energy models, a first step towards Energy Digital Twins once sensor data are connected.</p>
+    </div>
+    <div class="p-card"><b>1.1 Aim of the study: one integrated workflow</b>
+      <ul class="p-list">
+        <li>building geometry is reconstructed from 3D data;</li>
+        <li>energy-relevant devices are detected in multi-view imagery and persistently localized in 3D;</li>
+        <li>technical parameters are extracted from imagery;</li>
+        <li>all information is linked to rooms, surfaces and thermal zones through a typed semantic graph.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section class="p-sec" id="related">
+  <div class="p-shead"><div class="eyebrow">2 · Related work</div><h2>Where this work sits</h2></div>
+  <div class="p-cols">
+    <div class="p-card"><b>2.1 Low-cost portable mapping</b><span>Vision-based and multi-sensor systems such as GuPho, Ant3D and STELVIO offer flexible alternatives to terrestrial laser scanning in indoor and narrow spaces.</span></div>
+    <div class="p-card"><b>2.2 Object 3D localization</b><span>Volumetric, point-based and projection-based methods, now extended to semantic and language-conditioned 3D grounding.</span></div>
+    <div class="p-card"><b>2.3 Visual recognition of energy devices</b><span>Devices and HVAC components are often occluded or look like their surroundings; coupling 2D vision-language models with 3D reconstruction localizes them.</span></div>
+    <div class="p-card"><b>2.4 Scene graph representation</b><span>Hierarchical SLAM graphs, 3D dynamic scene graphs and IFC-based graphs organize spaces and objects into queryable digital twin models.</span></div>
+  </div>
+</section>
+<section class="p-sec" id="methodology">
+  <div class="p-shead"><div class="eyebrow">3 · Methodology</div><h2>Six stages from raw observations to an energy-oriented building graph</h2><p>(i) data acquisition, (ii) structural 3D reconstruction, (iii) image-based device recognition, (iv) multi-view instance reconstruction, (v) technical attribute extraction and (vi) graph-based BEM generation.</p></div>
+  <div class="p-two wide-l"><figure class="p-fig"><img src="assets/fig1_workflow.webp" alt="Figure 1: The proposed mapping-to-BIM/BEM workflow" loading="lazy"><figcaption><b>Figure 1.</b> The proposed mapping-to-BIM/BEM workflow.</figcaption></figure><ol class="p-steps">
+      <li><div><b>Data acquisition</b><span>STELVIO (stereo-visual-LiDAR-inertial) outputs a dense RGB point cloud, the camera trajectory and raw imagery in one SLAM frame.</span></div></li>
+      <li><div><b>Structural 3D reconstruction</b><span>Superpoint Transformer labels floor, ceiling, wall, column and openings; RANSAC, DBSCAN and wall-plane rasterization split them into instances.</span></div></li>
+      <li><div><b>Image-based device recognition</b><span>Open-vocabulary detectors and segmenters find lights, radiators, sockets, sensors and HVAC units from class prompts.</span></div></li>
+      <li><div><b>Multi-view 3D instance reconstruction</b><span>Masks are back-projected with depth and pose; cross-view support votes each point's class and geometric priors remove implausible instances.</span></div></li>
+      <li><div><b>Technical attribute extraction</b><span>GLM-OCR reads nameplates into parameter–value–unit tuples, linked to the device, its room and thermal zone.</span></div></li>
+      <li><div><b>Graph-based BEM generation</b><span>Spaces, elements, surfaces and devices form a typed semantic graph, exported to EnergyPlus epJSON and to Revit.</span></div></li>
+    </ol></div>
+  <div class="p-sub"><h3><i>3.1</i>STELVIO mobile mapping acquisition</h3><p>The in-house STELVIO system combines stereo cameras, LiDAR and an IMU in a factor-graph framework. It outputs dense RGB point clouds, the camera trajectory and raw imagery in the SLAM frame: the basis for image-to-3D reprojection and multi-view instance reconstruction.</p></div>
+  <div class="p-sub"><h3><i>3.2</i>Structural 3D reconstruction</h3><div class="p-cols p-cols3">
+      <div class="p-card"><b>1 · Semantic labelling</b><span>Superpoint Transformer, pretrained on ScanNet, classifies floor, ceiling, wall, column, opening and other; a PCA-normal fallback covers missing inference.</span></div>
+      <div class="p-card"><b>2 · Instance segmentation</b><span>Floors and ceilings by elevation clustering and DBSCAN; walls by iterative RANSAC; columns by linearity and verticality; openings refined by rasterization and flood fill in the wall plane.</span></div>
+      <div class="p-card"><b>3 · Panoptic encoding</b><span>Each element gets a unique identifier of class and instance; every point stores labels, colour, normal and local geometric descriptors.</span></div>
+    </div></div>
+  <div class="p-sub"><h3><i>3.3</i>Image processing: energy device recognition</h3><p>Devices are found in registered RGB images with class-specific synonym prompts. Four strategies are compared: A, B and D are detector-first; C is segment-first.</p><div class="p-two"><figure class="p-fig"><img src="assets/fig2_detections.webp" alt="Figure 2: Examples of object detection using Method D and corresponding prompts from Table 1" loading="lazy"><figcaption><b>Figure 2.</b> Examples of object detection using Method D and corresponding prompts from Table 1.</figcaption></figure><div class="p-text">
+      <div class="p-tblbox"><table class="p-tbl"><caption style="caption-side:top;text-align:left;padding:10px 12px 0;font-size:13px;color:var(--muted)">Table 1. Class prompts for the open-vocabulary detectors.</caption><thead><tr><th>Category</th><th>Prompts</th></tr></thead><tbody>
+        <tr><td>Lighting</td><td><em>light fixtures, ceiling lights</em></td></tr>
+        <tr><td>Heating</td><td><em>radiators, heaters, boilers, water heaters</em></td></tr>
+        <tr><td>Electrical</td><td><em>power outlets, wall sockets</em></td></tr>
+        <tr><td>Sensors / controls</td><td><em>detector, thermostat, switch</em></td></tr>
+        <tr><td>Devices</td><td><em>electric devices, monitors</em></td></tr>
+        <tr><td>HVAC</td><td><em>HVAC unit, ventilation device</em></td></tr>
+      </tbody></table></div>
+      <div class="p-tblbox"><table class="p-tbl"><caption style="caption-side:top;text-align:left;padding:10px 12px 0;font-size:13px;color:var(--muted)">Table 2. Evaluated 2D-to-3D labelling strategies.</caption><thead><tr><th>Method</th><th>Strategy</th><th>Configuration</th></tr></thead><tbody>
+        <tr><td>A</td><td>Detector-first</td><td>YOLO-World + SAM2</td></tr>
+        <tr><td>B</td><td>Detector-first</td><td>YOLO-World + SAM3</td></tr>
+        <tr><td>C</td><td>Segment-first</td><td>SAM3 + YOLO-World</td></tr>
+        <tr><td>D</td><td>Detector-first, open-vocabulary</td><td>GroundingDINO + SAM2</td></tr>
+      </tbody></table></div>
+    </div></div></div>
+  <div class="p-sub"><h3><i>3.4</i>Multi-view agreement and 3D instance reconstruction</h3><p>Mask pixels are back-projected with depth, intrinsics and pose. For each 3D point p, the support for class c counts the views in which p is visible and falls inside a mask of c. A point takes the class with the highest support only above a minimum number of views; labelled points are grouped into device instances and filtered by height, wall proximity, extent and mask area.</p><div class="p-eq">S<sub>c</sub>(p) = Σ<sub>i=1…N</sub> I<sub>i</sub>(p, c)</div></div>
+  <div class="p-sub"><h3><i>3.5</i>Instance validation in 3D and geometric refinement</h3><p>Predicted instances are matched one-to-one to manual references; localization and semantic correctness are scored separately, and matched instances are refined with the fused multi-view observations.</p><figure class="p-fig"><img src="assets/fig3_overview.webp" alt="Figure 3: Workflow overview: (a) input point cloud and object detection (Section 3" loading="lazy"><figcaption><b>Figure 3.</b> Workflow overview: (a) input point cloud and object detection (Section 3.1, 3.3); (b) 3D device mapping and panoptic segmentation (Sections 3.2, 3.4–3.6); (c) solid model; (d) surface-based topological model and device positions; (e) complete semantic graph; (f) BIM; and (g) BEM (Section 3.7).</figcaption></figure></div>
+  <div class="p-sub"><h3><i>3.6</i>Extraction of device technical parameters</h3><p>GLM-OCR reads equipment nameplates; text is parsed into parameter–value–unit tuples (rated power, voltage, flow rate, model…), normalized to EnergyPlus conventions and written to the matching epJSON fields. Each tuple stays linked to its 3D device, room and thermal zone.</p></div>
+  <div class="p-sub"><h3><i>3.7</i>Solid model and semantic graph for spatial reasoning</h3><p>The reconstructed geometry becomes a 3D solid model, then volumetric and surface-based topological representations and the corresponding graph, exported as BIM and as an EnergyPlus BEM. The graph links geometry, topology, semantics, devices and energy information in one multi-level digital twin structure.</p></div>
+</section>
+<section class="p-sec" id="results">
+  <div class="p-shead"><div class="eyebrow">4 · Results</div><h2>Evaluation on ScanNet</h2><p>Recognition and structural reconstruction are benchmarked on ScanNet (312 scans); OCR and the complete workflow are assessed on self-acquired data.</p></div>
+  <div class="p-sub"><h3><i>4.1</i>Image-based semantic recognition</h3><p>At image level, Method C detects 73.4% of devices at 49.5% precision; A and B are the most precise (79.3%, 78.6%) but recall about 35%. At instance level, after geometric filtering, A reaches 54.0% F1 (P 56.6%, R 51.7%), followed by B (51.7%), C (49.7%) and D (42.6%). Remaining errors come from background similarity, small or visually variable objects and taxonomy mismatch.</p><div class="p-two"><figure class="p-fig"><img src="assets/fig4_image_level.webp" alt="Figure 4: Image-level evaluation of the detection methods" loading="lazy"><figcaption><b>Figure 4.</b> Image-level evaluation of the detection methods.</figcaption></figure><figure class="p-fig"><img src="assets/fig5_instance_level.webp" alt="Figure 5: Performance of 3D instance reconstruction" loading="lazy"><figcaption><b>Figure 5.</b> Performance of 3D instance reconstruction.</figcaption></figure></div><figure class="p-fig narrow"><img src="assets/fig6_failures.webp" alt="Figure 6: Common issues in automatic detection" loading="lazy"><figcaption><b>Figure 6.</b> Common issues in automatic detection.</figcaption></figure></div>
+  <div class="p-sub"><h3><i>4.2</i>Structural 3D reconstruction</h3><p>All 312 scans were processed. Floor, ceiling and wall reach 87–94% IoU; openings and columns remain the weakest classes (46–59%).</p><figure class="p-fig narrow"><img src="assets/fig7_structural.webp" alt="Figure 7: Per-class reconstruction metrics" loading="lazy"><figcaption><b>Figure 7.</b> Per-class reconstruction metrics.</figcaption></figure></div>
+  <div class="p-sub"><h3><i>4.3</i>Multi-view 3D reconstruction and computational performance</h3><p>Method D is the most balanced (0.66 s/frame, 4.66 instances/s, about 3.56 GB); A has the lowest memory (2.29 GB). Recognition and fusion take about 6 min per scene on a laptop RTX 4050 GPU.</p><figure class="p-fig narrow"><img src="assets/fig8_compute.webp" alt="Figure 8: Computational efficiency of the evaluated configurations" loading="lazy"><figcaption><b>Figure 8.</b> Computational efficiency of the evaluated configurations.</figcaption></figure></div>
+  <div class="p-sub"><h3><i>4.4</i>Semantic graph and BEM representation</h3><p>Nodes are spatial, architectural and device entities; edges encode verified spatial or functional relations. Each device is linked to its room, supporting surface and thermal zone.</p><div class="p-two"><figure class="p-fig"><img src="assets/fig9_graph_steps.webp" alt="Figure 9: Steps from the initial point cloud representation to the typed semantic graph used for BEM and EDTs generation" loading="lazy"><figcaption><b>Figure 9.</b> Steps from the initial point cloud representation to the typed semantic graph used for BEM and EDTs generation.</figcaption></figure><figure class="p-fig"><img src="assets/fig10_scenes.webp" alt="Figure 10: Representative reconstruction stages for three scenes, showing the geometric processing from the input scene to the final BEM and scene graph" loading="lazy"><figcaption><b>Figure 10.</b> Representative reconstruction stages for three scenes, showing the geometric processing from the input scene to the final BEM and scene graph.</figcaption></figure></div></div>
+  <div class="p-sub"><h3><i>4.5</i>Image-to-epJSON device parameter enrichment</h3><p>Across seven boiler and water-heater nameplates, 48 of 52 energy-relevant parameters (92%) were extracted correctly; most errors came from one low-resolution, strongly inclined plate.</p><figure class="p-fig narrow"><img src="assets/fig11_ocr.webp" alt="Figure 11: Example of OCR-assisted mapping of image-extracted nameplate data to EnergyPlus epJSON parameters" loading="lazy"><figcaption><b>Figure 11.</b> Example of OCR-assisted mapping of image-extracted nameplate data to EnergyPlus epJSON parameters.</figcaption></figure></div>
+  <div class="p-sub"><h3><i>4.6</i>Energy simulations</h3><p>Each zone was simulated in EnergyPlus 24.2 with generic constructions, the Mannheim (DWD) weather file and ideal loads (20/26 °C). Volume error follows the footprint (correlation 0.87), not the height (0.04): improving footprint closure in partly scanned rooms is the most effective next step.</p><div class="p-kpis">
+      <div class="p-kpi"><b>99.7<small>%</small></b><span>scans (311 of 312) simulate without severe errors</span></div>
+      <div class="p-kpi"><b>0.81</b><span>median footprint IoU</span></div>
+      <div class="p-kpi"><b>3.2<small> cm</small></b><span>median wall-point distance</span></div>
+      <div class="p-kpi"><b>9.6 / 11.1<small>%</small></b><span>floor-area / volume error</span></div>
+      <div class="p-kpi"><b>4.2<small>%</small></b><span>median height error</span></div>
+    </div></div>
+</section>
+<section class="p-sec" id="case-study">
+  <div class="p-shead"><div class="eyebrow">5 · Case study</div><h2>A real flat surveyed with STELVIO, end to end</h2></div>
+  <div class="p-chips"><span><b>447</b> registered images</span><span><b>~19 M</b> points</span><span><b>6</b> rooms · <b>~80 m²</b></span><span><b>~5 mm</b> median point spacing</span><span>graph with <b>70</b> nodes, <b>78</b> edges</span><span><b>86.7%</b> of devices seen from several views</span><span>radiators: P <b>83.3%</b> · R <b>55.6%</b> · F1 <b>66.7%</b></span></div>
+  <div class="p-two"><figure class="p-fig"><img src="assets/fig12_dataset.webp" alt="Figure 12: The dataset used for validation: (a) top view, (b) point cloud and STELVIO trajectory, (c) examples of acquired images" loading="lazy"><figcaption><b>Figure 12.</b> The dataset used for validation: (a) top view, (b) point cloud and STELVIO trajectory, (c) examples of acquired images.</figcaption></figure><figure class="p-fig"><img src="assets/fig13_case_detections.webp" alt="Figure 13: Object detection on the example case study frames" loading="lazy"><figcaption><b>Figure 13.</b> Object detection on the example case study frames.</figcaption></figure></div>
+  <div class="p-two"><figure class="p-fig"><img src="assets/fig14_case_models.webp" alt="Figure 14: Images from the complete workflow: (a) solid model; (b) BIM; (c) surface-based model with semantic room classification; and (d) BEM with thermal boundaries and building-service devices" loading="lazy"><figcaption><b>Figure 14.</b> Images from the complete workflow: (a) solid model; (b) BIM; (c) surface-based model with semantic room classification; and (d) BEM with thermal boundaries and building-service devices.</figcaption></figure><figure class="p-fig"><img src="assets/fig15_dynamo.webp" alt="Figure 15: Dynamo visualization of the space topology, scene graph and temperature" loading="lazy"><figcaption><b>Figure 15.</b> Dynamo visualization of the space topology, scene graph and temperature.</figcaption></figure></div>
+</section>
+<section class="p-sec" id="conclusions">
+  <div class="p-shead"><div class="eyebrow">6 · Conclusions</div><h2>An end-to-end, low-cost path from mapping to BIM and BEM</h2></div>
+  <div class="p-two">
+    <div class="p-text">
+      <p>The workflow integrates structural reconstruction, image-based device recognition, multi-view 3D instance reconstruction, OCR-based parameter extraction and semantic graph generation, with export to BIM and EnergyPlus.</p>
+      <p>The best configuration (YOLO-World + SAM2) reaches 54.0% instance-level F1; GroundingDINO + SAM2 (42.6%) offers the best runtime–memory balance. Main structural classes reach about 90% IoU, 311 of 312 ScanNet scans give a valid EnergyPlus model, and OCR extracts 92% of parameters correctly.</p>
+    </div>
+    <div class="p-card"><b>Limitations and next steps</b><span>False positives, duplicate or missed instances, occlusions, small or ambiguous devices, taxonomy mismatch and nameplate readability. Future work: stronger false-positive suppression, duplicate merging, domain-specific recognition and validation across more building types.</span></div>
+  </div>
+</section>
+<section class="p-sec explorer-sec" id="explorer">
   <header class="head">
     <div>
-      <div class="eyebrow">Supplementary results · ScanNet benchmark</div>
-      <h1>From indoor point clouds to energy models, scan by scan</h1>
-      <p class="lede">Every ScanNet scan processed by the pipeline: panoptic segmentation, wall and opening reconstruction, a closed solid, the EnergyPlus surface model and the scene graph. Pick a scan to rotate all five 3D views together.</p>
-      <div class="pipe"><span>RGB cloud</span><i>→</i><span>panoptic</span><i>→</i><span>walls · openings</span><i>→</i><span>solid</span><i>→</i><span>BEM surfaces</span><i>→</i><span>graph</span></div>
+      <div class="p-shead"><div class="eyebrow">Interactive results · all 312 ScanNet scans</div>
+      <h2>Every scan, from point cloud to energy model</h2>
+      <p>Every ScanNet scan processed by the pipeline: panoptic segmentation, wall and opening reconstruction, a closed solid, the EnergyPlus surface model and the semantic graph placed in 3D. Pick a scan to rotate all six 3D views together.</p></div>
     </div>
     <div>
       <div class="figs" id="figs"></div>
@@ -214,7 +431,7 @@ td.ok{color:var(--good)} td.fail{color:var(--bad);font-weight:600}
         <div class="pv" data-k="2"><div class="lab"><b>Classified cloud + model</b><span>points inside the wall wireframe</span></div><button class="ex" title="Enlarge" aria-label="Enlarge classified view">⤢</button></div>
         <div class="pv" data-k="3"><div class="lab"><b>Solid model</b><span>walls, slab, openings + objects</span></div><button class="ex" title="Enlarge" aria-label="Enlarge solid model">⤢</button></div>
         <div class="pv" data-k="4"><div class="lab"><b>Surface-based model</b><span>EnergyPlus surfaces, openings, objects</span></div><button class="ex" title="Enlarge" aria-label="Enlarge surface-based model">⤢</button></div>
-        <div class="pv graph" data-k="5"><svg class="g" id="graph" viewBox="-1.32 -1.06 2.64 2.40" role="img" aria-label="Scene graph"></svg><div class="lab"><b>Scene graph</b><span>zone, walls, openings, objects</span></div><button class="ex" title="Enlarge" aria-label="Enlarge scene graph">⤢</button></div>
+        <div class="pv" data-k="5"><div class="lab"><b>BEM and scene graph</b><span>surface model with the 3D semantic graph</span></div><div class="glegend"><span><i style="background:#1F2A33"></i>building</span><span><i style="background:#3D4A5F"></i>room</span><span><i style="background:#8C9AA5"></i>wall</span><span><i style="background:#A0613F"></i>object</span><span><i style="background:#E07B39"></i>door</span><span><i style="background:#4A97C9"></i>window</span></div><button class="ex" title="Enlarge" aria-label="Enlarge BEM and scene graph">⤢</button></div>
         <div class="loading" id="loading" hidden>Loading scan…</div>
       </div>
       <div class="bar">
@@ -223,7 +440,7 @@ td.ok{color:var(--good)} td.fail{color:var(--bad);font-weight:600}
           <span><i style="background:#E07B39"></i>door</span><span><i style="background:#4A90C8"></i>window</span>
           <span><i style="background:#B8864F"></i>furniture &amp; objects</span><span><i style="background:#9467BD"></i>picture</span><span><i style="background:#20B2C4"></i>fixtures</span>
         </div>
-        <div class="hint">Drag to orbit · right-drag to pan · scroll to zoom · hover graph nodes to highlight them in 3D</div>
+        <div class="hint">Drag to orbit · right-drag to pan · scroll to zoom · the sixth view shows the semantic graph in the scene</div>
       </div>
       <div class="metrics" id="metrics"></div>
     </div>
@@ -244,10 +461,28 @@ td.ok{color:var(--good)} td.fail{color:var(--bad);font-weight:600}
   </section>
 
   <footer class="about">
-    <div><h3>The six views</h3><p>All five 3D views share one camera. The point clouds are random subsets of about 45,000 points per scan with the ceiling removed. Walls, doors and windows come from the reconstructed model, and the surfaces are the ones written to the EnergyPlus input file.</p></div>
+    <div><h3>The six views</h3><p>All six 3D views share one camera. The point clouds are random subsets of about 45,000 points per scan with the ceiling removed. Walls, doors and windows come from the reconstructed model, and the surfaces are the ones written to the EnergyPlus input file.</p></div>
     <div><h3>Metrics</h3><p><b>Footprint IoU</b>: overlap of the reconstructed zone footprint with the reference footprint. <b>Floor-area, height and volume error</b>: signed relative error against the reference. <b>Wall distance</b>: median distance of wall-labelled points to their reconstructed wall plane.</p></div>
-    <div><h3>Energy</h3><p>Each zone was simulated in EnergyPlus with the same constructions and weather file. Heating and cooling are annual zone loads; the per-m² values divide by the reconstructed floor area.</p></div>
+    <div><h3>Energy</h3><p>Each zone was simulated in EnergyPlus 24.2 with generic constructions, the Mannheim (DWD) weather file and ideal loads at 20/26 °C. Heating and cooling are annual zone loads; the per-m² values divide by the reconstructed floor area.</p></div>
   </footer>
+</section>
+<section class="p-sec" id="cite">
+  <div class="p-shead"><div class="eyebrow">Citation</div><h2>Cite this work</h2></div>
+  <div class="p-bib"><button class="btn p-copy" id="copybib" type="button">Copy</button><pre id="bibtex">@inproceedings{roman2026lowcost,
+  title     = {Towards Building Energy Digital Twins with a Low-Cost Portable Mobile Mapping System},
+  author    = {Roman, O. and Trybała, P. and Farella, E. M. and Remondino, F.},
+  booktitle = {ISPRS LC3D 2026},
+  year      = {2026}
+}</pre></div>
+  <div class="p-sub"><h3>Related work from the group</h3>
+  <ol class="p-refs">
+    <li>Roman, O., Bassier, M., Agugiaro, G., Arroyo Ohori, K., Farella, E.M., Remondino, F., 2025. <a href="https://www.mdpi.com/2075-5309/15/22/4060" target="_blank" rel="noopener">Scan-to-EDTs: Automated generation of Energy Digital Twins from 3D point clouds</a>. <em>Buildings</em>, 15(22), 4060.</li>
+    <li>Roman, O., Bassier, M., De Geyter, S., De Winter, H., Farella, E.M., Remondino, F., 2024. BIM module for deep learning-driven parametric IFC reconstruction. <em>Int. Arch. Photogramm. Remote Sens. Spatial Inf. Sci.</em>, XLVIII-2/W8-2024, 403–410.</li>
+    <li>Trybała, P., Morelli, L., Facenda, S., Razzino, A., Remondino, F., 2025. STELVIO: Exploring factor graphs for a robust stereo-visual-LiDAR-inertial odometry. <em>Int. Arch. Photogramm. Remote Sens. Spatial Inf. Sci.</em>, XLVIII-1/W5-2025, 125–131.</li>
+  </ol></div>
+  <p class="p-ack"><b>Acknowledgement.</b> This study was carried out within the Power Twin project, supported by the 2026 PoC by Trentino – Test Your Idea! programme, promoted by Fondazione Bruno Kessler and the University of Trento (Italy).</p>
+</section>
+<footer class="p-foot"><span>© 2026 3D Optical Metrology unit, Fondazione Bruno Kessler</span><span><a href="https://powertwin.fbk.eu/" target="_blank" rel="noopener">powertwin.fbk.eu</a> · <a href="https://3dom.fbk.eu" target="_blank" rel="noopener">3dom.fbk.eu</a></span></footer>
 </div>
 <div class="tip" id="tip" hidden></div>
 
@@ -293,7 +528,7 @@ function summary(){
   const ops = S.reduce((a, s) => a + s.m.doors + s.m.windows, 0), walls = S.reduce((a, s) => a + s.m.walls, 0);
   const figs = [
     [n, "", "scans processed end to end"],
-    [Math.round(100 * ep / n), "%", `EnergyPlus runs completed (${ep} of ${n})`],
+    [(100 * ep / n).toFixed(1), "%", `EnergyPlus runs completed (${ep} of ${n})`],
     [med(S.map(s => s.m.iou)).toFixed(2), "", "median footprint IoU"],
     [med(S.map(s => Math.abs(s.m.areaErr))).toFixed(1), "%", "median absolute floor-area error"],
     [med(S.map(s => s.m.wdist)).toFixed(1), " cm", `median wall distance · ${walls.toLocaleString("en")} walls, ${ops.toLocaleString("en")} openings`],
@@ -427,40 +662,7 @@ function select(s){
 
 const tip = $("#tip");
 function showTip(e, t){ tip.textContent = t; tip.hidden = false; const w = tip.offsetWidth; tip.style.left = Math.min(e.clientX + 12, innerWidth - w - 8) + "px"; tip.style.top = (e.clientY + 14) + "px"; }
-function graph(s){
-  const svg = $("#graph"), N = [], E = [], P = (x, y) => [x, -y];
-  N.push({ k: "B", p: P(.95, .86), c: "#263238", r: .05, l: "Building", big: 1 }, { k: "Z", p: P(0, 0), c: "#3F4A5E", r: .045, l: "Zone", big: 1 }); E.push(["B", "Z", "s"]);
-  const nw = Math.max(s.walls.length, 1);
-  s.walls.forEach((w, i) => { const a = 2 * Math.PI * i / nw + .35, p = [.74 * Math.cos(a), .74 * Math.sin(a)];
-    N.push({ k: "w" + i, p: P(...p), c: "#90A4AE", r: .026, l: "W" + i, wall: i, ang: a, lr: .05 }); E.push(["Z", "w" + i, "s"]);
-    const hs = s.ops.map((o, j) => [o, j]).filter(([o]) => o.w === i);
-    hs.forEach(([o, j], n) => { const aa = a + (n - (hs.length - 1) / 2) * .22;
-      N.push({ k: "o" + j, p: P(p[0] + .24 * Math.cos(aa), p[1] + .24 * Math.sin(aa)), c: o.t === "door" ? "#E07B39" : "#4A97C2", r: .03, l: o.t, op: j, ang: aa, lr: .05 }); E.push(["w" + i, "o" + j, "o"]); });
-  });
-  N.push({ k: "F", p: P(-.13, -.1), c: "#C9B999", r: .026, l: "Floor" }, { k: "C", p: P(.13, -.1), c: "#D5DADF", r: .026, l: "Ceiling" }); E.push(["Z", "F", "s"], ["Z", "C", "s"]);
-  const objs = s.insts.map((v, j) => [v, j + 1]).filter(([v]) => v[2]); const no = Math.max(objs.length, 1);
-  objs.forEach(([v, id], i) => { const a = 2 * Math.PI * (i + .5) / no + .35, r = no > 18 ? .3 + .07 * (i % 2) : .34;
-    N.push({ k: "i" + id, p: P(r * Math.cos(a), r * Math.sin(a)), c: "#A0673E", r: .019, l: D.classes[v[0]] || "object", inst: id, pts: v[1], ang: a, lr: .035, small: no > 18 }); E.push(["Z", "i" + id, "i"]); });
-  const at = Object.fromEntries(N.map(n => [n.k, n]));
-  const ec = { s: tok("--faint"), o: "#7E98AE", i: "#CBA684" }, pnl = tok("--panel"), mut = tok("--muted");
-  let o = E.map(([a, b, t]) => `<line x1="${at[a].p[0]}" y1="${at[a].p[1]}" x2="${at[b].p[0]}" y2="${at[b].p[1]}" stroke="${ec[t]}" stroke-width=".006" stroke-opacity=".8"/>`).join("");
-  const label = n => {
-    const fs = n.big ? .062 : n.small ? .036 : .042, st = `font-family:var(--f-body);pointer-events:none`;
-    if (n.ang == null) return `<text x="${n.p[0]}" y="${n.p[1] + n.r + (n.big ? .07 : .05)}" font-size="${fs}" text-anchor="middle" fill="${mut}" stroke="${pnl}" stroke-width=".016" paint-order="stroke" style="${st}">${n.l}</text>`;
-    let deg = -n.ang * 180 / Math.PI, left = Math.cos(n.ang) < 0; if (left) deg += 180;
-    const dx = Math.cos(n.ang) * (n.r + .012), dy = -Math.sin(n.ang) * (n.r + .012);
-    return `<text transform="translate(${n.p[0] + dx} ${n.p[1] + dy}) rotate(${deg})" font-size="${fs}" text-anchor="${left ? "end" : "start"}" dominant-baseline="central" fill="${mut}" stroke="${pnl}" stroke-width=".016" paint-order="stroke" style="${st}">${n.l}</text>`;
-  };
-  o += N.map(n => `<g class="gn" data-k="${n.k}" style="cursor:${n.wall != null || n.op != null || n.inst ? "pointer" : "default"}">
-      <circle cx="${n.p[0]}" cy="${n.p[1]}" r="${Math.max(n.r, .04)}" fill="transparent"/>
-      <circle class="dotc" cx="${n.p[0]}" cy="${n.p[1]}" r="${n.r}" fill="${n.c}" stroke="${pnl}" stroke-width=".008"/>${label(n)}</g>`).join("");
-  svg.innerHTML = o;
-  svg.querySelectorAll(".gn").forEach(g => { const n = at[g.dataset.k], dc = g.querySelector(".dotc");
-    g.addEventListener("mouseenter", () => { V.highlight(n); dc.setAttribute("stroke", tok("--ink")); dc.setAttribute("stroke-width", ".014"); });
-    g.addEventListener("mousemove", e => showTip(e, n.inst ? `${n.l} · instance ${n.inst} · ${n.pts.toLocaleString("en")} points` : n.wall != null ? `Wall W${n.wall} · ${wallLen(s.walls[n.wall]).toFixed(2)} m long` : n.op != null ? `${n.l} on W${s.ops[n.op].w} · ${opSize(s.ops[n.op])}` : n.l));
-    g.addEventListener("mouseleave", () => { V.highlight(null); tip.hidden = true; dc.setAttribute("stroke", pnl); dc.setAttribute("stroke-width", ".008"); });
-  });
-}
+function graph(s){ /* the semantic graph is drawn in 3D, in the sixth viewport */ }
 const wallLen = w => Math.hypot(w[2] - w[0], w[3] - w[1]);
 const opSize = o => `${Math.hypot(o.ab[2] - o.ab[0], o.ab[3] - o.ab[1]).toFixed(2)} × ${(o.z[1] - o.z[0]).toFixed(2)} m`;
 
@@ -468,13 +670,13 @@ const opSize = o => `${Math.hypot(o.ab[2] - o.ab[0], o.ab[3] - o.ab[1]).toFixed(
 const V = {
   cache: new Map(), U: { uSize: { value: .022 }, uScale: { value: 500 }, uHl: { value: 0 }, uDim: { value: new THREE.Color() } },
   init(){
-    this.host = $("#views"); this.cv = $("#gl"); this.pvs = $$(".pv").filter(p => +p.dataset.k < 5);
+    this.host = $("#views"); this.cv = $("#gl"); this.pvs = $$(".pv").filter(p => +p.dataset.k < 6);
     this.r = new THREE.WebGLRenderer({ canvas: this.cv, antialias: true }); this.r.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
     this.r.autoClear = false;
     this.cam = new THREE.PerspectiveCamera(34, 1.23, .05, 300); this.cam.up.set(0, 0, 1);
     this.ctl = new THREE.OrbitControls(this.cam, this.host); this.ctl.enableDamping = true; this.ctl.dampingFactor = .12; this.ctl.autoRotateSpeed = 1.6;
     this.ctl.addEventListener("change", () => this.dirty = true);
-    this.sc = [0, 1, 2, 3, 4].map(() => new THREE.Scene());
+    this.sc = [0, 1, 2, 3, 4, 5].map(() => new THREE.Scene());
     new ResizeObserver(() => this.resize()).observe(this.host); this.resize();
     $("#spin").addEventListener("click", e => { this.ctl.autoRotate = !this.ctl.autoRotate; e.currentTarget.setAttribute("aria-pressed", this.ctl.autoRotate); });
     $("#reset").addEventListener("click", () => this.frame());
@@ -484,8 +686,6 @@ const V = {
       this.host.classList.toggle("solo", on); $$(".pv").forEach(p => p.classList.toggle("on", on && p === pv)); b.textContent = on ? "⤡" : "⤢"; b.title = on ? "Back to all views" : "Enlarge";
       $$(".pv .ex").forEach(x => { if (x !== b) { x.textContent = "⤢"; x.title = "Enlarge"; } }); this.resize(); }));
     $$(".pv .ex").forEach(b => ["pointerdown", "wheel"].forEach(ev => b.addEventListener(ev, e => e.stopPropagation())));
-    $(".pv.graph").addEventListener("pointerdown", e => e.stopPropagation(), true);
-    $(".pv.graph").addEventListener("wheel", e => e.stopPropagation(), true);
     const theme = () => { this.theme(); if (cur) graph(cur); };
     this.theme();
     const loop = () => { requestAnimationFrame(loop); this.ctl.update(); if (this.dirty && tab === "explore") { this.render(); this.dirty = false; } }; loop();
@@ -509,13 +709,13 @@ const V = {
   async load(s){
     const tok_ = this.req = s.id; $("#loading").hidden = false;
     let buf = this.cache.get(s.id);
-    try { if (!buf) { const [pb, po, pl] = s.pk, url = `data/pts/pack_${pb}.bin`; this.packs = this.packs || new Map(); const whole = this.packs.get(pb); if (whole) buf = whole.slice(po, po + pl); else { const res = await fetch(url, { headers: { Range: `bytes=${po}-${po + pl - 1}` } }); if (!res.ok) throw new Error(res.status); const ab = await res.arrayBuffer(); if (res.status === 206 && ab.byteLength === pl) buf = ab; else { this.packs.set(pb, ab); if (this.packs.size > 2) this.packs.delete(this.packs.keys().next().value); buf = ab.slice(po, po + pl); } } this.cache.set(s.id, buf); if (this.cache.size > 8) this.cache.delete(this.cache.keys().next().value); } }
+    try { if (!buf) { const res = await fetch(`data/pts/${s.id}.bin`); if (!res.ok) throw new Error(res.status); buf = await res.arrayBuffer(); this.cache.set(s.id, buf); if (this.cache.size > 8) this.cache.delete(this.cache.keys().next().value); } }
     catch (e) { $("#loading").textContent = `Could not load the points for ${s.id}.`; return; }
     if (this.req !== tok_) return;
     this.build(s, buf); $("#loading").hidden = true; $("#loading").textContent = "Loading scan…";
   },
   build(s, buf){
-    this.sc.forEach(sc => { sc.traverse(o => { if (o.geometry) o.geometry.dispose(); }); sc.clear(); });
+    this.sc.forEach(sc => { sc.traverse(o => { if (o.geometry) o.geometry.dispose(); if (o.material && o.material.map) o.material.map.dispose(); }); sc.clear(); });
     const n = s.n, q = new Uint16Array(buf, 0, 3 * n), rgb = new Uint8Array(buf, 6 * n, 3 * n), sem = new Uint8Array(buf, 9 * n, n), ins = new Uint8Array(buf, 10 * n, n);
     const lo = s.lo, hi = s.hi, c = [(lo[0] + hi[0]) / 2, (lo[1] + hi[1]) / 2, (lo[2] + hi[2]) / 2]; this.c = c;
     const pos = new Float32Array(3 * n);
@@ -561,6 +761,15 @@ const V = {
     s.surf.forEach(f => { if (f.t !== "wall") return; const bm = new THREE.MeshBasicMaterial({ color: "#C9D0D8", transparent: true, opacity: .22, side: THREE.DoubleSide, depthWrite: false });
       const m = new THREE.Mesh(fan(f.q, c), bm); m.renderOrder = 2; this.sc[4].add(m); if (this.wallMesh[wi]) this.wallMesh[wi].surf = bm; wi++; });
     if (objG) { this.sc[3].add(pts(objG)); this.sc[4].add(pts(objG)); }
+    // panel 6 — BEM and scene graph: surface model + typed semantic graph in 3D
+    const g5 = this.sc[5];
+    g5.add(new THREE.LineSegments(eg.clone(), M.wire2));
+    s.floor.forEach(fl => { const sh = new THREE.Shape(); for (let i = 0; i < fl.length; i += 2) (i ? sh.lineTo : sh.moveTo).call(sh, fl[i] - c[0], fl[i + 1] - c[1]);
+      const g = new THREE.ShapeGeometry(sh); g.translate(0, 0, fz); g5.add(new THREE.Mesh(g, M.floorB)); });
+    s.surf.forEach(f => { if (f.t !== "wall") return; const m = new THREE.Mesh(fan(f.q, c), new THREE.MeshBasicMaterial({ color: "#C9D0D8", transparent: true, opacity: .18, side: THREE.DoubleSide, depthWrite: false })); m.renderOrder = 2; g5.add(m); });
+    s.ops.forEach(o => g5.add(new THREE.Mesh(fan(o.q, c), new THREE.MeshBasicMaterial({ color: o.t === "door" ? "#D96C2C" : "#3F7FC4", transparent: true, opacity: .75, side: THREE.DoubleSide, depthWrite: false }))));
+    if (objG) g5.add(pts(objG));
+    sceneGraph3D(g5, s, pos, ins, c);
     this.sc.forEach(sc => { sc.add(new THREE.HemisphereLight(0xffffff, 0x8a96a3, .78)); const dl = new THREE.DirectionalLight(0xffffff, .55); dl.position.set(-.45, -.65, .62); sc.add(dl); });
     this.size = [hi[0] - lo[0], hi[1] - lo[1], hi[2] - lo[2]];
     if (!this.framed || this.lastSize !== s.id) this.frame(); this.U.uHl.value = 0; this.dirty = true;
@@ -579,6 +788,50 @@ const V = {
     this.dirty = true;
   },
 };
+function sceneGraph3D(g5, s, pos, ins, c){
+  const C = { building: "#1F2A33", room: "#3D4A5F", wall: "#8C9AA5", object: "#A0613F", door: "#E07B39", window: "#4A97C9", floor: "#CDBF96", ceiling: "#B9C1C9" };
+  const EC = { room: "#3D4A5F", wall: "#7E8C97", object: "#C08A66", door: "#E07B39", window: "#4A97C9", slab: "#9AA3AB" };
+  const d = Math.hypot(s.hi[0] - s.lo[0], s.hi[1] - s.lo[1], s.hi[2] - s.lo[2]), H = s.H;
+  const fl = s.floor[0] || [], fx = [], fy = [];
+  for (let i = 0; i < fl.length; i += 2) { fx.push(fl[i]); fy.push(fl[i + 1]); }
+  const cx = fx.length ? fx.reduce((a, b) => a + b, 0) / fx.length : c[0], cy = fy.length ? fy.reduce((a, b) => a + b, 0) / fy.length : c[1];
+  const P = (x, y, z) => new THREE.Vector3(x - c[0], y - c[1], z - c[2]);
+  const nodes = [], edges = [];
+  const add = (k, p, col, r, label, big) => { nodes.push({ k, p, col, r, label, big }); return k; };
+  add("B", P(cx, cy, H * 1.42), C.building, .024, "Building", 1);
+  add("R", P(cx, cy, H * .62), C.room, .018, "Room", 1); edges.push(["B", "R", EC.room]);
+  add("F", P(cx, cy, 0.02), C.floor, .009, "Floor"); add("C", P(cx, cy, H), C.ceiling, .009, "Ceiling");
+  edges.push(["R", "F", EC.slab], ["R", "C", EC.slab]);
+  s.walls.forEach((w, i) => { add("w" + i, P((w[0] + w[2]) / 2, (w[1] + w[3]) / 2, w[5]), C.wall, .01, "W" + i); edges.push(["R", "w" + i, EC.wall]); });
+  const cnt = { door: 0, window: 0 };
+  s.ops.forEach((o, j) => { add("o" + j, P((o.ab[0] + o.ab[2]) / 2, (o.ab[1] + o.ab[3]) / 2, (o.z[0] + o.z[1]) / 2), C[o.t], .012, `${o.t} ${cnt[o.t]++}`); edges.push(["w" + o.w, "o" + j, EC[o.t]]); });
+  // object instances at the centroid of their points
+  const keep = new Set(s.insts.map((v, j) => v[2] ? j + 1 : 0).filter(Boolean)), sum = new Map();
+  for (let i = 0; i < ins.length; i++) { const k = ins[i]; if (!keep.has(k)) continue; const a = sum.get(k) || [0, 0, 0, 0]; a[0] += pos[3 * i]; a[1] += pos[3 * i + 1]; a[2] += pos[3 * i + 2]; a[3]++; sum.set(k, a); }
+  sum.forEach((a, k) => { add("i" + k, new THREE.Vector3(a[0] / a[3], a[1] / a[3], a[2] / a[3]), C.object, .008, ""); edges.push(["R", "i" + k, EC.object]); });
+  const at = Object.fromEntries(nodes.map(n => [n.k, n]));
+  // edges
+  const ev = [], ecol = [];
+  edges.forEach(([a, b, col]) => { const A = at[a].p, Bp = at[b].p, cc = new THREE.Color(col); ev.push(A.x, A.y, A.z, Bp.x, Bp.y, Bp.z); ecol.push(cc.r, cc.g, cc.b, cc.r, cc.g, cc.b); });
+  const eg = new THREE.BufferGeometry(); eg.setAttribute("position", new THREE.Float32BufferAttribute(ev, 3)); eg.setAttribute("color", new THREE.Float32BufferAttribute(ecol, 3));
+  const lines = new THREE.LineSegments(eg, new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: .95, depthTest: false })); lines.renderOrder = 8; g5.add(lines);
+  // nodes and labels (always on top, as in the paper)
+  nodes.forEach(n => {
+    const m = new THREE.Mesh(new THREE.SphereGeometry(n.r * d, 18, 12), new THREE.MeshBasicMaterial({ color: n.col, depthTest: false }));
+    m.position.copy(n.p); m.renderOrder = 9; g5.add(m);
+    if (n.label) { const sp = textSprite(n.label, n.big ? .05 * d : .032 * d, n.big); if (n.big) { sp.center.set(-.08 - n.r * 2, .5); sp.position.copy(n.p); } else sp.position.set(n.p.x, n.p.y, n.p.z + n.r * d * 1.4 + .016 * d); g5.add(sp); }
+  });
+}
+function textSprite(text, h, big){
+  const cv = document.createElement("canvas"), x = cv.getContext("2d"), fs = 64, font = `${big ? 700 : 600} ${fs}px "Source Sans 3", Arial, sans-serif`;
+  x.font = font; const w = Math.ceil(x.measureText(text).width) + 24; cv.width = w; cv.height = fs + 24;
+  x.font = font; x.textAlign = "center"; x.textBaseline = "middle"; x.lineJoin = "round";
+  x.lineWidth = 12; x.strokeStyle = "rgba(255,255,255,.95)"; x.strokeText(text, w / 2, cv.height / 2);
+  x.fillStyle = big ? "#1F2A33" : "#3A4553"; x.fillText(text, w / 2, cv.height / 2);
+  const tx = new THREE.CanvasTexture(cv); tx.anisotropy = 4;
+  const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tx, depthTest: false, transparent: true })); sp.renderOrder = 10;
+  sp.scale.set(h * w / cv.height, h, 1); return sp;
+}
 function box(a, b, nr, z0, z1, t0, t1){
   const Q = [[a[0] + nr[0] * t0, a[1] + nr[1] * t0], [b[0] + nr[0] * t0, b[1] + nr[1] * t0], [b[0] + nr[0] * t1, b[1] + nr[1] * t1], [a[0] + nr[0] * t1, a[1] + nr[1] * t1]];
   const Bt = Q.map(p => [p[0], p[1], z0]), T = Q.map(p => [p[0], p[1], z1]), quads = [[Bt[0], Bt[1], Bt[2], Bt[3]], [T[0], T[1], T[2], T[3]]], v = [];
@@ -596,6 +849,25 @@ void main(){ vec4 mv = modelViewMatrix * vec4(position, 1.0); gl_Position = proj
 const FS = `uniform vec3 uDim; varying vec3 vC; varying float vD;
 void main(){ vec2 p = gl_PointCoord * 2.0 - 1.0; float r = dot(p, p); if (r > 1.0) discard;
   vec3 c = vC * (1.0 - 0.2 * r); c = mix(c, uDim, vD * 0.85); gl_FragColor = vec4(c, 1.0); }`;
+})();
+</script>
+<script>
+(() => {
+  document.querySelectorAll('.p-fig img').forEach(img => img.addEventListener('click', () => {
+    const lb = document.createElement('div'); lb.className = 'lb'; lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-label', img.alt);
+    const big = new Image(); big.src = img.src; big.alt = img.alt; lb.appendChild(big);
+    const close = () => { lb.remove(); document.removeEventListener('keydown', esc); };
+    const esc = e => { if (e.key === 'Escape') close(); };
+    lb.addEventListener('click', close); document.addEventListener('keydown', esc); document.body.appendChild(lb);
+  }));
+  const cb = document.getElementById('copybib');
+  if (cb) cb.addEventListener('click', () => {
+    const t = document.getElementById('bibtex').textContent;
+    const done = () => { cb.textContent = 'Copied'; setTimeout(() => cb.textContent = 'Copy', 1500); };
+    (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(done).catch(() => {
+      const r = document.createRange(); r.selectNodeContents(document.getElementById('bibtex')); const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+    });
+  });
 })();
 </script>
 </body></html>
