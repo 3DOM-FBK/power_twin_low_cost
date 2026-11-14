@@ -281,11 +281,11 @@ body{background:#fff}
 .pp-sec a{color:var(--link)}
 .pp-note{font-size:16px;color:var(--paper-muted);border-left:3px solid #d5dbe1;padding-left:14px}
 .pp-eq{text-align:center;font-size:19px;margin:16px 0 18px!important}
-.pp-fig{margin:26px 0 28px;font-family:var(--f-body)}
+.pp-fig{margin:26px 0 28px;font-family:var(--serif)}
 .pp-fig img,.pp-fig video{width:100%;height:auto;display:block;cursor:zoom-in;background:#fff}
 .pp-fig video{cursor:auto;background:#000;border-radius:2px}
 .pp-fig img{margin:0 auto}
-.pp-fig figcaption{margin-top:9px;font-size:14.5px;line-height:1.45;color:var(--paper-muted)}
+.pp-fig figcaption{margin-top:9px;font-family:var(--serif);font-size:15.5px;line-height:1.5;color:var(--paper-muted)}
 .pp-fig figcaption b{color:var(--paper-ink);font-weight:600}
 .pp-teaser figcaption{text-align:center;max-width:820px;margin-left:auto;margin-right:auto}
 .pp-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:end;margin:0}
@@ -293,7 +293,7 @@ body{background:#fff}
 .pp-row .pp-fig{margin:18px 0 22px}
 .pp-tables{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start;margin:18px 0 6px}
 .pp-tbl{width:100%;border-collapse:collapse;font-family:var(--f-body);font-size:14.5px;line-height:1.4;border-top:1.5px solid var(--paper-ink);border-bottom:1.5px solid var(--paper-ink);margin:0 0 18px}
-.pp-tbl caption{caption-side:top;text-align:left;font-size:14px;color:var(--paper-muted);padding:0 0 8px}
+.pp-tbl caption{caption-side:top;text-align:left;font-family:var(--serif);font-size:15.5px;color:var(--paper-muted);padding:0 0 8px}
 .pp-tbl caption b{color:var(--paper-ink)}
 .pp-tbl th{text-align:left;font-weight:600;padding:7px 8px;border-bottom:1px solid var(--paper-ink);position:static;background:none;color:var(--paper-ink);box-shadow:none;cursor:default;font-size:14px}
 .pp-tbl td{padding:6px 8px;border:0;text-align:left;font-family:var(--f-body)!important;white-space:normal}
@@ -387,7 +387,6 @@ body{background:#fff}
 <section id="abstract" class="pp-sec">
   <h2 class="pp-c">Abstract</h2>
   <p>Building Energy Digital Twins need structured, simulation-ready representations that bring together geometry, topology, semantics, thermal properties and energy-related systems. For existing buildings these models are still made largely by hand, and the slowest part is usually finding, locating and describing the energy-relevant devices. In this paper we present a mapping-to-BIM/BEM workflow that produces simulation-ready Building Energy Models directly from low-cost mobile mapping data. Structural geometry and the spatial layout are reconstructed from 3D point clouds. Energy-related devices are detected in registered multi-view images and merged into single 3D instances by checking that the views agree, both semantically and geometrically. The text on device nameplates is read with OCR and attached to the matching physical device. Spaces, devices and their attributes are then stored in a typed semantic graph, which we translate into EnergyPlus epJSON and into a BIM environment.</p>
-  <p class="pp-note">In short: on 312 ScanNet scans, 311 gave a valid EnergyPlus model; floor, ceiling and wall reach 87 to 94% IoU; the best detector setup reaches 54.0% instance-level F1; OCR read 92% of nameplate parameters correctly; and one scene takes about six minutes on a laptop GPU.</p>
 </section>
 
 <section id="introduction" class="pp-sec">
