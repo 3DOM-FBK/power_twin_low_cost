@@ -5,7 +5,7 @@
 
 ISPRS LC3D 2026 · Power Twin project
 
-**[Project page](https://3dom-fbk.github.io/power_twin_low_cost/)** | **[Results for all 312 ScanNet scans](https://3dom-fbk.github.io/power_twin_low_cost/#explorer)** | **[Videos](https://3dom-fbk.github.io/power_twin_low_cost/#media)** | **[Power Twin](https://powertwin.fbk.eu/)** | **[3DOM](https://3dom.fbk.eu)**
+**[Paper page](https://3dom-fbk.github.io/power_twin_low_cost/)** | **[Results for all 312 ScanNet scans](https://3dom-fbk.github.io/power_twin_low_cost/#explorer)** | **[Videos](https://3dom-fbk.github.io/power_twin_low_cost/#media)** | **[Power Twin](https://powertwin.fbk.eu/)** | **[3DOM](https://3dom.fbk.eu)**
 
 ![From a low-cost survey to an energy model](assets/fig3_overview.webp)
 
